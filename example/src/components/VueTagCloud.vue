@@ -110,9 +110,16 @@ export default {
       word_span.className = "w" + weight;
       var textNode = document.createTextNode(word.text);
 
-      word_span.appendChild(textNode);
-
-      document.getElementById("vue-tag-cloud").appendChild(word_span);
+      	if(this.word_array[0].link != 'undefined'){
+					// Create a link
+				var	word_link = document.createElement("a");
+						word_link.setAttribute('href', this.word_array[0].link);
+						word_link.appendChild(word_span)
+						document.getElementById("vue-tag-cloud").appendChild(word_link);
+				}else{
+					//Normal creation
+						document.getElementById("vue-tag-cloud").appendChild(word_span);
+				}
 
       if (this.options.weights) {
         word_span.style.fontSize = this.options.weights[weight - 1];
